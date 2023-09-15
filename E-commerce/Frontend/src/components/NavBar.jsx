@@ -1,29 +1,22 @@
-import React from 'react'
+import React from "react";
+import "../App.css";
 
-export const NavBar = () => {
-    return (
-        <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Cart</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Login/signup</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </>
-    )
-}
+const Navbar = ({ size, setShow }) => {
+  return (
+    <nav>
+      <div className="nav_box">
+        <span className="my_shop" onClick={() => setShow(true)}>
+          Ink & Quill
+        </span>
+        <div className="cart" onClick={() => setShow(false)}>
+          <span>
+            <i className="fas fa-cart-plus"></i>
+          </span>
+          <span>{size}</span>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
