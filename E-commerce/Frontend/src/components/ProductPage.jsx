@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductPage = ({ product, handleClose }) => {
   const { name, description, price, image } = product;
@@ -7,13 +7,20 @@ const ProductPage = ({ product, handleClose }) => {
   return (
     <div className="product-page">
       <div className="product-details">
-        <img src={image} alt="Product" />
+        <img className="img-fluid" src={image} alt="Product" />
         <div className="details">
           <h2>{name}</h2>
           <p>{description}</p>
           <p>Price: {price} Rs</p>
         </div>
-        <button onClick={handleClose}>Close</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          onClick={handleClose}
+        >
+          Close
+        </button>
       </div>
     </div>
   );

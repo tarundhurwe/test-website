@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Navbar from "./NavBar";
 import Cart from "./Cart";
 import Product from "./Product";
-import "../App.css";
+// import "../App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
   const [show, setShow] = useState(true);
@@ -37,17 +38,19 @@ const Home = () => {
   };
 
   return (
-    <React.Fragment>
-      <Navbar size={cart.length} setShow={setShow} />
-      {show ? (
-        <Product handleClick={handleClick} />
-      ) : (
-        <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
-      )}
-      {warning && (
-        <div className="warning">Item is already added to your cart</div>
-      )}
-    </React.Fragment>
+    <div>
+      <div class="container-fluid">
+        <Navbar size={cart.length} setShow={setShow} />
+        {show ? (
+          <Product handleClick={handleClick} />
+        ) : (
+          <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+        )}
+        {warning && (
+          <div className="warning">Item is already added to your cart</div>
+        )}
+      </div>
+    </div>
   );
 };
 
