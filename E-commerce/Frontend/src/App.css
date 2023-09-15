@@ -1,0 +1,66 @@
+src/App.css
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header Styles */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  /* Product Card Styles */
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .product-card img {
+    max-width: 300px;
+    height: 250px;
+  }
+  
+  /* HomePage Styles */
+  .home-page {
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media screen and (max-width: 768px) {
+    /* Adjust product card width for smaller screens */
+    .product-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+  
+    /* Center-align text in product cards for smaller screens */
+    .product-card h3,
+    .product-card p,
+    .product-card button {
+      text-align: center;
+    }
+  }
+  
+  
