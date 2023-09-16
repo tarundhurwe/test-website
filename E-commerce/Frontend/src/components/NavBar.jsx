@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   // Initialize the size state with 0
   const [size, setSize] = useState(0);
+  const [numItem, setNumItem] = useState(localStorage.getItem('numItem'))
 
   // Function to get the cart data from local storage and calculate the size
   const updateCartSize = () => {
@@ -45,13 +46,13 @@ const Navbar = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to="/home">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/cart">
-                  Cart ({size})
+                  Cart ({numItem})
                 </Link>
               </li>
               <li className="nav-item">

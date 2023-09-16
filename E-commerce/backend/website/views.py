@@ -9,8 +9,8 @@ views = Blueprint("views", __name__)
 def home():
     try:
         if current_user:
-            return jsonify({"button": "Logout", "url": "logout_url", "items": "number_of_items", "item_data": "item_data"})
+            return jsonify({"button": "Logout", "url": "logout_url"})
         else:
-            return jsonify({"item_data": "item_data", "message": "Working"})
+            return jsonify({"button": "Login/Signup"})
     except Exception as e:
         return jsonify({"message": f"not working {e}"})

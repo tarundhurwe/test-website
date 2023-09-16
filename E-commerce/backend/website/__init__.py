@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_cors import CORS
 import string
 import random
 
@@ -11,6 +12,7 @@ DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config["SECRET_KEY"] = "".join(
         random.choices(string.ascii_lowercase + string.digits, k=15)
     )
@@ -38,6 +40,7 @@ def create_app():
         return User.query.get(int(id))
 
     return app
+
 
 def create_database(app):
     if not path.exists(f"website\{DB_NAME}"):

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./NavBar";
 import Cart from "./Cart";
 import Product from "./Product";
@@ -43,7 +43,7 @@ const Home = () => {
         {show ? (
           <Product handleClick={handleClick} />
         ) : (
-          <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
+          <Cart handleChange={handleChange} />
         )}
         {warning && (
           <div class="alert alert-secondary" role="alert">
