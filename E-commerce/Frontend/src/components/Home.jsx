@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import Navbar from "./NavBar";
 import Cart from "./Cart";
 import Product from "./Product";
-// import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
-  const [show, setShowCart] = useState(true);
+  const [show, setShow] = useState(true);
   const [cart, setCart] = useState([]);
   const [warning, setWarning] = useState(false);
 
@@ -40,14 +39,16 @@ const Home = () => {
   return (
     <div>
       <div className="container-fluid">
-        <Navbar size={cart.length} setShowCart={setShowCart} />
+        <Navbar size={cart.length} setShow={setShow} />
         {show ? (
           <Product handleClick={handleClick} />
         ) : (
           <Cart cart={cart} setCart={setCart} handleChange={handleChange} />
         )}
         {warning && (
-          <div className="warning">Item is already added to your cart</div>
+          <div class="alert alert-secondary" role="alert">
+            Item is already added in your cart.
+          </div>
         )}
       </div>
     </div>

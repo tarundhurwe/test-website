@@ -1,19 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductPage from "./ProductPage";
 
-const Cards = ({ item, handleClick }) => {
-  const { name, description, price, image } = item;
+const Cards = ({ item }) => {
+  const { id, name, description, price, image } = item;
   const [showProductPage, setShowProductPage] = useState(false);
-  const [totalItem, setTotalItem] = useState(0);
 
   const handleImageClick = () => {
     setShowProductPage(true);
-    set;
   };
 
   const handleCloseProductPage = () => {
     setShowProductPage(false);
+  };
+
+  const addToCart = () => {
+    // Get the current cart items from local storage (if any)
+    const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const itemExists = existingCartItems.some((cartItem) => cartItem.id === id);
+
+    if (itemExists) {
+      const updatedCartItems = existingCartItems.map((cartItem) => {
+        if (cartItem.id === id) {
+          return { ...cartItem, quantity: cartItem.quantity + 1 };
+        }
+        return cartItem;
+      });
+
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    } else {
+      const newItem = { ...item, quantity: 1 };
+      const updatedCartItems = [...existingCartItems, newItem];
+
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+    }
+    alert(`${name} has been added to your cart.`);
   };
 
   return (
@@ -34,11 +56,7 @@ const Cards = ({ item, handleClick }) => {
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{description}</p>
         <p className="card-text">Price - {price} Rs</p>
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => handleClick(item)}
-        >
+        <button type="button" className="btn btn-danger" onClick={addToCart}>
           Add to Cart
         </button>
       </div>
