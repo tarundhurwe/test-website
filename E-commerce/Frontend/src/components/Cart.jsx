@@ -35,6 +35,7 @@ const Cart = ({ handleChange }) => {
     saveCartToLocalStorage(cart);
   }, [cart]);
 
+
   return (
     <div className="container-fluid">
       <Navbar />

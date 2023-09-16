@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ProductPage from "./ProductPage";
 
@@ -13,6 +13,9 @@ const Cards = ({ item }) => {
   const handleCloseProductPage = () => {
     setShowProductPage(false);
   };
+  useEffect(() => {
+    localStorage.setItem("numItem", 0);
+  })
 
   const addToCart = () => {
     const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -22,6 +25,7 @@ const Cards = ({ item }) => {
     if (itemExists) {
       const updatedCartItems = existingCartItems.map((cartItem) => {
         if (cartItem.id === id) {
+          localStorage['numItem'] = parseInt(localStorage['numItem']) + 1
           return { ...cartItem, quantity: cartItem.quantity + 1 };
         }
         return cartItem;

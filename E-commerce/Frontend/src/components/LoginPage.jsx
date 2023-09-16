@@ -4,14 +4,15 @@ import Navbar from "./NavBar";
 
 const LoginPage = () => {
   const [loginForm, setLoginForm] = useState({
-    loginEmail: "",
-    loginPassword: "",
+    email: "",
+    password: "",
   });
 
   const [signupForm, setSignupForm] = useState({
-    signupEmail: "",
-    signupPassword: "",
-    confirmPassword: "",
+    "email": "",
+    "password": "",
+    "first name": "",
+    "last name": " ",
   });
 
   const [isLogin, setIsLogin] = useState(true);
@@ -42,6 +43,52 @@ const LoginPage = () => {
     console.log("Signing up with:", signupForm);
   };
 
+  const loadData = (event) => {
+    event.preventDefault();
+    fetch("http://127.0.0.1:5000/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Login response:", data);
+      })
+  }
+
+  const loginSubmit = (event) => {
+    event.preventDefault();
+    console.log(JSON.stringify(loginForm))
+    fetch("http://127.0.0.1:5000/auth/login", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loginForm)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Login response:", data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      })
+  };
+
+  const signUpSubmit = (event) => {
+    event.preventDefault();
+    fetch("http://127.0.0.1:5000/auth/signup", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(setSignupForm)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Signup form: ", data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      })
+  }
+
   return (
     <>
       <Navbar />
@@ -52,31 +99,31 @@ const LoginPage = () => {
               <div className="card-header">{isLogin ? "Login" : "Sign Up"}</div>
               <div className="card-body">
                 {isLogin ? (
-                  <form onSubmit={handleLoginSubmit}>
+                  <form onSubmit={loginSubmit}>
                     <div className="mb-3">
-                      <label htmlFor="loginEmail" className="form-label">
+                      <label htmlFor="email" className="form-label">
                         Email address
                       </label>
                       <input
                         type="email"
                         className="form-control"
-                        id="loginEmail"
-                        name="loginEmail"
-                        value={loginForm.loginEmail}
+                        id="email"
+                        name="email"
+                        value={loginForm.email}
                         onChange={handleLoginChange}
                         required
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="loginPassword" className="form-label">
+                      <label htmlFor="password" className="form-label">
                         Password
                       </label>
                       <input
                         type="password"
                         className="form-control"
-                        id="loginPassword"
-                        name="loginPassword"
-                        value={loginForm.loginPassword}
+                        id="password"
+                        name="password"
+                        value={loginForm.password}
                         onChange={handleLoginChange}
                         required
                       />
@@ -90,49 +137,65 @@ const LoginPage = () => {
                     </button>
                   </form>
                 ) : (
-                  <form onSubmit={handleSignupSubmit}>
+                  <form onSubmit={signUpSubmit}>
                     <div className="mb-3">
-                      <label htmlFor="signupEmail" className="form-label">
+                      <label htmlFor="email" className="form-label">
                         Email address
                       </label>
                       <input
                         type="email"
                         className="form-control"
-                        id="signupEmail"
-                        name="signupEmail"
-                        value={signupForm.signupEmail}
+                        id="email"
+                        name="email"
+                        value={signupForm.email}
                         onChange={handleSignupChange}
                         required
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="signupPassword" className="form-label">
+                      <label htmlFor="password" className="form-label">
                         Password
                       </label>
                       <input
                         type="password"
                         className="form-control"
-                        id="signupPassword"
-                        name="signupPassword"
-                        value={signupForm.signupPassword}
+                        id="password"
+                        name="password"
+                        value={signupForm.password}
                         onChange={handleSignupChange}
                         required
                       />
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="confirmPassword" className="form-label">
-                        Confirm Password
+                      <label htmlFor="first name" className="form-label">
+                        First Name
                       </label>
                       <input
-                        type="password"
+                        type="text"
                         className="form-control"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        value={signupForm.confirmPassword}
+                        id="first-name"
+                        name="first name"
+                        value={signupForm["first name"]}
                         onChange={handleSignupChange}
                         required
                       />
                     </div>
+
+                    <div className="mb-3">
+                      <label htmlFor="last name" className="form-label">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="last-name"
+                        name="last name"
+                        value={signupForm["last name"]}
+                        onChange={handleSignupChange}
+                        required
+                      />
+                    </div>
+
                     <button
                       type="submit"
                       className="btn btn-primary"
@@ -160,6 +223,5 @@ const LoginPage = () => {
       </div>
     </>
   );
-};
-
+}
 export default LoginPage;
