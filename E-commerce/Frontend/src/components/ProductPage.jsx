@@ -1,5 +1,6 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../App.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProductPage = ({ product, handleClose }) => {
   const { name, description, price, image } = product;
@@ -15,7 +16,7 @@ const ProductPage = ({ product, handleClose }) => {
         </div>
         <button
           type="button"
-          class="btn btn-secondary"
+          className="btn btn-secondary"
           data-bs-dismiss="modal"
           onClick={handleClose}
         >

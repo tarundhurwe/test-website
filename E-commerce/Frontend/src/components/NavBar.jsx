@@ -1,17 +1,18 @@
 import React from "react";
 // import "../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ size, setShow }) => {
+const Navbar = ({ size, setShowCart }) => {
   return (
     <>
       <nav
         className="navbar navbar-expand-lg bg-body-tertiary"
         style={{ maxWidth: "100vw" }}
       >
-        <div className="container-fluid">
+        <div className="container-fluid" onClick={() => setShowCart(true)}>
           <a className="navbar-brand" href="#">
-            Navbar
+            Ink & Quill
           </a>
           <button
             className="navbar-toggler"
@@ -30,13 +31,13 @@ const Navbar = ({ size, setShow }) => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Cart
+                  Cart ({0})
                 </a>
               </li>
               <li className="nav-item">

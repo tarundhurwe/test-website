@@ -6,7 +6,7 @@ import Product from "./Product";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
-  const [show, setShow] = useState(true);
+  const [show, setShowCart] = useState(true);
   const [cart, setCart] = useState([]);
   const [warning, setWarning] = useState(false);
 
@@ -39,8 +39,8 @@ const Home = () => {
 
   return (
     <div>
-      <div class="container-fluid">
-        <Navbar size={cart.length} setShow={setShow} />
+      <div className="container-fluid">
+        <Navbar size={cart.length} setShowCart={setShowCart} />
         {show ? (
           <Product handleClick={handleClick} />
         ) : (
