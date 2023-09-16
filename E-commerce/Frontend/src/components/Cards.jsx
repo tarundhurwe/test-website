@@ -15,7 +15,6 @@ const Cards = ({ item }) => {
   };
 
   const addToCart = () => {
-    // Get the current cart items from local storage (if any)
     const existingCartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
     const itemExists = existingCartItems.some((cartItem) => cartItem.id === id);
